@@ -10,7 +10,7 @@
 
     <p>
         <button onclick="
-            let r1 = Math.floor(Math.random() * 3);
+            let r1 = getRandom();
 
             if(r1 == 0) {
                 draws++;
@@ -23,11 +23,11 @@
                 message = `You chose Rock. Computer chose Scissors.\nYou won!`;
             }
 
-            document.getElementById('score').innerText = `${message}\nWins: ${wins}, Losses: ${losses}, Draws: ${draws}`;
+            updateMessage();
         ">Rock</button>
 
         <button onclick="
-            let r2 = Math.floor(Math.random() * 3);
+            let r2 = getRandom();
 
             if(r2 == 0) {
                 wins++;
@@ -40,11 +40,11 @@
                 message = `You chose Paper. Computer chose Scissors.\nYou lost bitch!`;
             }
 
-            document.getElementById('score').innerText = `${message}\nWins: ${wins}, Losses: ${losses}, Draws: ${draws}`;
+            updateMessage();
         ">Paper</button>
 
         <button onclick="
-            let r3 = Math.floor(Math.random() * 3);
+            let r3 = getRandom();
 
             if(r3 == 0) {
                 losses++;
@@ -57,7 +57,7 @@
                 message = `You chose Scissors. Computer chose Scissors.\nThat's a draw!`;
             }
 
-            document.getElementById('score').innerText = `${message}\nWins: ${wins}, Losses: ${losses}, Draws: ${draws}`;
+            updateMessage();
         ">Scissors</button>
     </p>
 
@@ -69,6 +69,14 @@
         let draws = 0;
 
         let message = '';
+
+        function getRandom() {
+            return Math.floor(Math.random() * 3);
+        }
+
+        function updateMessage() {
+            document.getElementById('score').innerText = `${message}\nWins: ${wins}, Losses: ${losses}, Draws: ${draws}`;
+        }
     </script>
 </body>
 </html>
