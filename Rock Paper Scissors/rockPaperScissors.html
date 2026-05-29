@@ -10,54 +10,15 @@
 
     <p>
         <button onclick="
-            let r1 = getRandom();
-
-            if(r1 == 0) {
-                draws++;
-                message = `You chose Rock. Computer chose Rock.\nThat's a draw!`;
-            } else if(r1 == 1) {
-                losses++;
-                message = `You chose Rock. Computer chose Paper.\nYou lost bitch!`;
-            } else {
-                wins++;
-                message = `You chose Rock. Computer chose Scissors.\nYou won!`;
-            }
-
-            updateMessage();
+            playGame(0);
         ">Rock</button>
 
         <button onclick="
-            let r2 = getRandom();
-
-            if(r2 == 0) {
-                wins++;
-                message = `You chose Paper. Computer chose Rock.\nYou won!`;
-            } else if(r2 == 1) {
-                draws++;
-                message = `You chose Paper. Computer chose Paper.\nThat's a draw!`;
-            } else {
-                losses++;
-                message = `You chose Paper. Computer chose Scissors.\nYou lost bitch!`;
-            }
-
-            updateMessage();
+            playGame(1);
         ">Paper</button>
 
         <button onclick="
-            let r3 = getRandom();
-
-            if(r3 == 0) {
-                losses++;
-                message = `You chose Scissors. Computer chose Rock.\nYou lost bitch!`;
-            } else if(r3 == 1) {
-                wins++;
-                message = `You chose Scissors. Computer chose Paper.\nYou won!`;
-            } else {
-                draws++;
-                message = `You chose Scissors. Computer chose Scissors.\nThat's a draw!`;
-            }
-
-            updateMessage();
+            playGame(2);
         ">Scissors</button>
     </p>
 
@@ -72,6 +33,47 @@
 
         function getRandom() {
             return Math.floor(Math.random() * 3);
+        }
+
+        function playGame(playerMove) {
+            const kabutarMove = getRandom();
+
+            if(playerMove === 0) {
+                if(kabutarMove == 0) {
+                    draws++;
+                    message = `You chose Rock. Computer chose Rock.\nThat's a draw!`;
+                } else if(kabutarMove == 1) {
+                    losses++;
+                    message = `You chose Rock. Computer chose Paper.\nYou lost bitch!`;
+                } else {
+                    wins++;
+                    message = `You chose Rock. Computer chose Scissors.\nYou won!`;
+                }
+            } else if(playerMove === 1) {
+                if(kabutarMove == 0) {
+                    wins++;
+                    message = `You chose Paper. Computer chose Rock.\nYou won!`;
+                } else if(kabutarMove == 1) {
+                    draws++;
+                    message = `You chose Paper. Computer chose Paper.\nThat's a draw!`;
+                } else {
+                    losses++;
+                    message = `You chose Paper. Computer chose Scissors.\nYou lost bitch!`;
+                }
+            } else if(playerMove === 2) {
+                if(kabutarMove == 0) {
+                    losses++;
+                    message = `You chose Scissors. Computer chose Rock.\nYou lost bitch!`;
+                } else if(kabutarMove == 1) {
+                    wins++;
+                    message = `You chose Scissors. Computer chose Paper.\nYou won!`;
+                } else {
+                    draws++;
+                    message = `You chose Scissors. Computer chose Scissors.\nThat's a draw!`;
+                }
+            }
+
+            updateMessage();
         }
 
         function updateMessage() {
