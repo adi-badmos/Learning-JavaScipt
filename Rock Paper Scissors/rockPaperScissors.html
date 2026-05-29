@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <h1>Rock Paper Scissors</h1>
+
+    <p>
+        <button onclick="
+            let r1 = Math.floor(Math.random() * 3);
+
+            if(r1 == 0) {
+                draws++;
+                message = `You chose Rock. Computer chose Rock.\nThat's a draw!`;
+            } else if(r1 == 1) {
+                losses++;
+                message = `You chose Rock. Computer chose Paper.\nYou lost bitch!`;
+            } else {
+                wins++;
+                message = `You chose Rock. Computer chose Scissors.\nYou won!`;
+            }
+
+            document.getElementById('score').innerText = `${message}\nWins: ${wins}, Losses: ${losses}, Draws: ${draws}`;
+        ">Rock</button>
+
+        <button onclick="
+            let r2 = Math.floor(Math.random() * 3);
+
+            if(r2 == 0) {
+                wins++;
+                message = `You chose Paper. Computer chose Rock.\nYou won!`;
+            } else if(r2 == 1) {
+                draws++;
+                message = `You chose Paper. Computer chose Paper.\nThat's a draw!`;
+            } else {
+                losses++;
+                message = `You chose Paper. Computer chose Scissors.\nYou lost bitch!`;
+            }
+
+            document.getElementById('score').innerText = `${message}\nWins: ${wins}, Losses: ${losses}, Draws: ${draws}`;
+        ">Paper</button>
+
+        <button onclick="
+            let r3 = Math.floor(Math.random() * 3);
+
+            if(r3 == 0) {
+                losses++;
+                message = `You chose Scissors. Computer chose Rock.\nYou lost bitch!`;
+            } else if(r3 == 1) {
+                wins++;
+                message = `You chose Scissors. Computer chose Paper.\nYou won!`;
+            } else {
+                draws++;
+                message = `You chose Scissors. Computer chose Scissors.\nThat's a draw!`;
+            }
+
+            document.getElementById('score').innerText = `${message}\nWins: ${wins}, Losses: ${losses}, Draws: ${draws}`;
+        ">Scissors</button>
+    </p>
+
+    <p id="score">Wins: 0, Losses: 0, Draws: 0</p>
+    
+    <script>
+        let wins = 0;
+        let losses = 0;
+        let draws = 0;
+
+        let message = '';
+    </script>
+</body>
+</html>
