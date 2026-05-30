@@ -7,6 +7,8 @@
 </head>
 <body>
     <h1>Calculator</h1>
+    <p id="calc"></p>
+    <p id="result"></p>
     <p><button onclick="
             input('1');
         ">1</button>
@@ -56,28 +58,109 @@
             input('.');
         ">.</button>
         <button onclick="
-            calculation = eval(calculation);
-            console.log(calculation);
+            if(!calculation) {
+                return;
+            }
+
+            operator = false;
+            try {
+                result = eval(calculation);
+                showCalc();
+            } catch(e) {
+                console.log(e);
+                result = 'Error';
+
+                showCalc(calculation);
+                calculation = '';
+            } showResult();
+            
+            console.log(result);
+            if(result !== 'Error') {
+                localStorage.setItem('lastCalc', calculation);
+                localStorage.setItem('lastRes', result);
+            }
         ">=</button>
        <button onclick="
             input('/');
         ">/</button>
     </p>
 
-    <button onclick="
-        calculation = '';
-        console.clear();
-    ">Clear</button>
+    <p>
+        <button onclick="
+            operator = false;
+
+            calculation = '';
+            localStorage.removeItem('lastCalc');
+
+            result = '';
+            localStorage.removeItem('lastRes');
+
+            showCalc();
+            showResult();
+
+            console.clear();
+        ">Clear</button>
+    </p>
+    
 
     <script>
-        let calculation = '';
+        let calculation = localStorage.getItem('lastCalc') || '';
+        let result = localStorage.getItem('lastRes') || '';
+        let operator = false;
+
+        showCalc();
+        showResult();
 
         function input(op) {
+            if(result === 'Error') {
+                calculation = '';
+                result = '';
+                operator = false;
+            }
+
             if((op >= '0' && op <= '9') || op == '.') {
                 calculation += op;
+                
+                if(operator) {
+                    try {
+                        showResult(eval(calculation));
+                    } catch(e) {
+                        if(e instanceof SyntaxError) {
+                            console.log(e.message);
+                            showResult('Invalid Input');
+                        }
+                    }
+                }
             } else {
-                calculation += ' ' + op + ' ';
+                if(!calculation && (op == '*' || op == '/' || op == '=')) {
+                    return;
+                }
+
+                operator = true;
+                if(calculation[calculation.length - 1] === ' ') {
+                    calculation = calculation.slice(0, -2) + op + ' ';
+                } else {
+                    calculation += ` ${op} `;
+                }
             } console.log(calculation);
+            
+            showCalc();
+        }
+
+        function showCalc(ip) {
+            if(ip !== undefined) {
+                document.getElementById('calc').innerText = ip;
+            } else {
+                calculation ? document.getElementById('calc').innerText = calculation : document.getElementById('calc').innerHTML = `<br>`;
+            }
+        }
+
+        function showResult(ip) {
+            if(ip !== undefined) {
+                document.getElementById('result').innerText = ip;
+            } else {
+                result ? document.getElementById('result').innerText = result : document.getElementById('result').innerHTML = `<br>`;
+            }
         }
     </script>
 </body>
