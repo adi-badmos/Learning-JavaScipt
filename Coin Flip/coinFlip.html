@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin Flip</title>
+</head>
+<body>
+    <p>
+        <button onclick="
+            playGame(0);
+        ">heads</button>
+        <button onclick="
+            playGame(1);
+        ">tails</button>
+    </p>
+
+    <p>
+        <button onclick="
+            score.wins = 0;
+            score.losses = 0;
+            localStorage.removeItem('score');
+        ">Clear</button>
+    </p>
+
+    <p id="result"></p>
+
+    <script>
+        let score = localStorage.getItem('score') || {
+            wins: 0,
+            losses: 0
+        };
+
+        function guess() {
+            return Math.floor(Math.random() * 2);
+        }
+
+        function playGame(userGuess) {
+            let computerGuess = guess();
+
+            computerGuess == userGuess ? score.wins++ : score.losses++;
+        }
+
+        function showResult() {
+            document.
+        }
+    </script>
+</body>
+</html>
