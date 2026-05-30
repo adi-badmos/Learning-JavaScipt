@@ -19,17 +19,20 @@
         <button onclick="
             score.wins = 0;
             score.losses = 0;
-            localStorage.removeItem('score');
+            localStorage.setItem('score', JSON.stringify(score));
+            showResult();
         ">Clear</button>
     </p>
 
     <p id="result"></p>
 
     <script>
-        let score = localStorage.getItem('score') || {
+        let score = JSON.parse(localStorage.getItem('score')) || {
             wins: 0,
             losses: 0
         };
+
+        showResult();
 
         function guess() {
             return Math.floor(Math.random() * 2);
@@ -38,11 +41,31 @@
         function playGame(userGuess) {
             let computerGuess = guess();
 
-            computerGuess == userGuess ? score.wins++ : score.losses++;
+            let message = '';
+            let result = '';
+
+            let map = {
+                0: 'heads',
+                1: 'tails'
+            }
+
+            if(computerGuess === userGuess) {
+                score.wins++;
+                result = 'You won!';
+            } else {
+                score.losses++;
+                result = 'You lost bitch!';
+            }
+
+            message = `You chose ${map[userGuess]}. Computer chose ${map[computerGuess]}.`
+
+            localStorage.setItem('score', JSON.stringify(score));
+
+            showResult(message, result);
         }
 
-        function showResult() {
-            document.getElementById(result).innerText = `${message}\n${result}\nWins: ${score.wins}, Losses: ${score.losses}`;
+        function showResult(message = '', result = '') {
+            document.getElementById("result").innerText = `${message}\n${result}\nWins: ${score.wins}, Losses: ${score.losses}`;
         }
     </script>
 </body>
