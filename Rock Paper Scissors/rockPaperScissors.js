@@ -16,6 +16,12 @@ if(!score) {
 }
 */
 
+document.querySelector('.rock').addEventListener('click', () => playGame(0));
+document.querySelector('.paper').addEventListener('click', () => playGame(1));
+document.querySelector('.scissors').addEventListener('click', () => playGame(2));
+
+document.querySelector('.reset').addEventListener('click', resetScore);
+
 updateMessage();
 
 function getRandom() {
@@ -83,4 +89,12 @@ function scoreUpdate(result) {
 
 function updateMessage(message = '', result = '') {
     document.querySelector('.score').innerText = `${message}\n${result}\n\nWins: ${score.wins}, Losses: ${score.losses}, Draws: ${score.draws}`;
+}
+
+function resetScore() {
+    score.wins = 0;
+    score.losses = 0;
+    score.draws = 0;
+    localStorage.removeItem('score');
+    updateMessage();
 }

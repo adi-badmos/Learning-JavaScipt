@@ -8,32 +8,19 @@
 </head>
 <body>
     <h1>Rock Paper Scissors</h1>
+    
     <br>
     <p>
-        <button class="move-button rock" onclick="
-            playGame(0);
-        ">✊🏻</button>
-
-        <button class="move-button paper" onclick="
-            playGame(1);
-        ">🖐🏻</button>
-
-        <button class="move-button scissors" onclick="
-            playGame(2);
-        ">✌🏻</button>
+        <button class="move-button rock">✊🏻</button>
+        <button class="move-button paper">🖐🏻</button>
+        <button class="move-button scissors">✌🏻</button>
     </p>
 
     <br>
     <p class="score"></p>
 
     <br>
-    <button class="reset-button" onclick="
-        score.wins = 0;
-        score.losses = 0;
-        score.draws = 0;
-        localStorage.removeItem('score');
-        updateMessage();
-    ">Reset Score</button>
+    <button class="reset-button">Reset Score</button>
     
     <script src="rockPaperScissors.js"></script>
 </body>
