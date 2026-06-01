@@ -4,121 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="rockPaperScissors.css">
 </head>
 <body>
     <h1>Rock Paper Scissors</h1>
-
+    <br>
     <p>
-        <button onclick="
+        <button class="move-button rock" onclick="
             playGame(0);
-        ">Rock</button>
+        ">✊🏻</button>
 
-        <button onclick="
+        <button class="move-button paper" onclick="
             playGame(1);
-        ">Paper</button>
+        ">🖐🏻</button>
 
-        <button onclick="
+        <button class="move-button scissors" onclick="
             playGame(2);
-        ">Scissors</button>
-
-        <button onclick="
-            score.wins = 0;
-            score.losses = 0;
-            score.draws = 0;
-            localStorage.removeItem('score');
-            updateMessage();
-        ">Reset Score</button>
+        ">✌🏻</button>
     </p>
 
-    <p id="score"></p>
-    
-    <script>
-        let score = JSON.parse(localStorage.getItem('score')) || {
-            wins: 0,
-            losses: 0,
-            draws : 0
-        };
+    <br>
+    <p class="score"></p>
 
-        /* This means if the local storage has score from previous sessions, then it will be stored in score, but if not, then score will be {0, 0, 0}
-        Which basically looks like this
-
-        if(!score) {
-            score = {
-                wins: 0,
-                losses: 0,
-                draws: 0
-            };
-        }
-        */
-
+    <br>
+    <button class="reset-button" onclick="
+        score.wins = 0;
+        score.losses = 0;
+        score.draws = 0;
+        localStorage.removeItem('score');
         updateMessage();
-
-        function getRandom() {
-            return Math.floor(Math.random() * 3);
-        }
-
-        function playGame(playerMove) {
-            const computerMove = getRandom();
-
-            let message = '';
-            let result = '';
-            if(playerMove === 0) { // player chose rock
-                if(computerMove == 0) {
-                    message = `You chose Rock. Computer chose Rock.`;
-                    result = `That's a draw!`;
-                } else if(computerMove == 1) {
-                    message = `You chose Rock. Computer chose Paper.`;
-                    result = `You lost bitch!`;
-                } else {
-                    message = `You chose Rock. Computer chose Scissors.`;
-                    result = `You won!`;
-                }
-            } else if(playerMove === 1) { // player chose paper
-                if(computerMove == 0) {
-                    message = `You chose Paper. Computer chose Rock.`;
-                    result = `You won!`;
-                } else if(computerMove == 1) {
-                    message = `You chose Paper. Computer chose Paper.`;
-                    result = `That's a draw!`;
-                } else {
-                    message = `You chose Paper. Computer chose Scissors.`;
-                    result = `You lost bitch!`;
-                }
-            } else if(playerMove === 2) { // player chose scissors
-                if(computerMove == 0) {
-                    message = `You chose Scissors. Computer chose Rock.`;
-                    result = `You lost bitch!`;
-                } else if(computerMove == 1) {
-                    message = `You chose Scissors. Computer chose Paper.`;
-                    result = `You won!`;
-                } else {
-                    message = `You chose Scissors. Computer chose Scissors.`;
-                    result = `That's a draw!`;
-                }
-            }
-
-            scoreUpdate(result);
-
-            localStorage.setItem('score', JSON.stringify(score));
-
-            updateMessage(message, result);
-        }
-
-        function scoreUpdate(result) {
-            if(result === `You won!`) {
-                score.wins++;
-            } else if(result === `That's a draw!`) {
-                score.draws++;
-            } else if(result === `You lost bitch!`) {
-                score.losses++;
-            } else {
-                alert('Nigga that is invalid result!');
-            }
-        }
-
-        function updateMessage(message = '', result = '') {
-            document.getElementById('score').innerText = `${message}\n${result}\nWins: ${score.wins}, Losses: ${score.losses}, Draws: ${score.draws}`;
-        }
-    </script>
+    ">Reset Score</button>
+    
+    <script src="rockPaperScissors.js"></script>
 </body>
 </html>

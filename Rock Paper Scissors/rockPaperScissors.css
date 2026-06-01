@@ -1,0 +1,36 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial;
+}
+
+.move-button {
+    background-color: black;
+
+    font-size: 80px;
+
+    border-color: white;
+    border-radius: 50%;
+    border-width: 5px;
+    
+    padding: 35px;
+}
+
+.paper {
+    margin-left: 10px;
+}
+
+.scissors {
+    margin-left: 10px
+}
+
+.score {
+    font-size: 25px;
+}
+
+.reset-button {
+    background-color: white;
+    border: none;
+    font-size: 20px;
+    padding: 10px 15px;
+}
