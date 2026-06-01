@@ -7,10 +7,6 @@
 </head>
 <body>
     <h1>Cart</h1>
-    
-    <button onclick="
-        displayCart();
-    ">Show Quantity</button>
 
     <button onclick="
         updateCartQuantity('add', 1);
@@ -38,37 +34,45 @@
     
     <button onclick="
         cartQuantity = 0;
-        console.log(`Cart was reset.`);
-        displayCart();
+        displayCart(`Cart was reset.`);
     ">Reset Cart</button>
+
+    <p class="alert"></p>
+    <p class="display-cart-quantity">Cart Quantity: 0</p>
 
     <script>
         let cartQuantity = 0;
 
-        function displayCart() {
-            console.log(`Cart Quantity: ${cartQuantity}`);
+        displayCart();
+
+        function displayCart(message = `<br>`) {
+            let alertElement = document.querySelector('.alert');
+
+            alertElement.innerHTML = message;
+
+            let dispCart = document.querySelector('.display-cart-quantity');
+
+            dispCart.innerText = `Cart Quantity: ${cartQuantity}`;
         }
 
         function updateCartQuantity(operation, quantity) {
+            let message = `<br>`;
+
             if(operation === 'add') {
                 if(cartQuantity + quantity > 10) {
-                    console.log('The cart is full!');
-                    return;
+                    message = 'The cart is full!';
                 } else {
                     cartQuantity += quantity;
-                    displayCart();
                 }
             } else if(operation === 'subtract') {
                 if(cartQuantity < quantity) {
-                    console.log('Not enough items in the cart!');
+                    message = 'Not enough items in the cart!';
                 } else {
                     cartQuantity -= quantity;
-                    displayCart();
                 }
             } else {
-                alert('Invalid operation!');
-                return;
-            }
+                message = 'Invalid operation!';
+            } displayCart(message);
         }
     </script>
 </body>
