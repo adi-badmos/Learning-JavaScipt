@@ -1,0 +1,64 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial;
+}
+
+.buttonz {
+    color: white;
+    font-size: 30px;
+    height: 60px;
+    width: 60px;
+    margin-left: 8px;
+    border-radius: 50%;
+    border-width: 0px;
+}
+
+.black-button {
+    background-color: rgb(51, 51, 51);
+}
+
+.orange-button {
+    background-color: rgb(254, 160, 10);
+}
+
+.equals {
+    color: white;
+    font-size: 30px;
+    height: 60px;
+    width: 60px;
+    margin-left: 8px;
+    border-radius: 50%;
+    border-width: 0px;
+}
+
+.clear-button {
+    background-color: rgb(51, 51, 51);
+    color: white;
+    font-size: 30px;
+    height: 60px;
+    width: 60px;
+    margin-left: 8px;
+    border-radius: 50%;
+    border-width: 0px;
+    font-size: 20px;
+}
+
+.display {
+    font-size: 30px;
+    font-family: Arial;
+}
+
+.display {
+    color: white;
+    margin-left: 8px;
+    width: 270px;
+    text-align: end;
+}
+
+h1 {
+    color: white;
+    margin-left: 8px;
+    width: 270px;
+    text-align: center;
+}

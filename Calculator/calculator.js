@@ -5,6 +5,12 @@ let operator = false;
 showCalc();
 showResult();
 
+let inputLelo = document.querySelectorAll('.buttonz');
+
+inputLelo.forEach(button => {
+    button.addEventListener('click', () => (input(button.innerHTML)));
+})
+
 function input(op) {
     if(result === 'Error') {
         calculation = '';

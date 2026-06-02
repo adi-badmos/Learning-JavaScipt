@@ -4,60 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
+    <link rel="stylesheet" href="calculator.css">
 </head>
 <body>
     <h1>Calculator</h1>
-    <p id="calc"></p>
-    <p id="result"></p>
-    <p><button onclick="
-            input('1');
-        ">1</button>
-        <button onclick="
-            input('2');
-        ">2</button>
-        <button onclick="
-            input('3');
-        ">3</button>
-       <button onclick="
-            input('+');
-        ">+</button>
+    <p id="calc" class="display"></p>
+    <p id="result" class="display"></p>
+    <p><button class="black-button buttonz">1</button>
+        <button class="black-button buttonz">2</button>
+        <button class="black-button buttonz">3</button>
+       <button class="orange-button buttonz">+</button>
     </p>
 
-    <p><button onclick="
-            input('4');
-        ">4</button>
-        <button onclick="
-            input('5');
-        ">5</button>
-        <button onclick="
-            input('6');
-        ">6</button>
-       <button onclick="
-            input('-');
-        ">-</button>
+    <p><button class="black-button buttonz">4</button>
+        <button class="black-button buttonz">5</button>
+        <button class="black-button buttonz">6</button>
+       <button class="orange-button buttonz">-</button>
     </p>
 
-    <p><button onclick="
-            input('7');
-        ">7</button>
-        <button onclick="
-            input('8');
-        ">8</button>
-        <button onclick="
-            input('9');
-        ">9</button>
-       <button onclick="
-            input('*');
-        ">*</button>
+    <p><button class="black-button buttonz">7</button>
+        <button class="black-button buttonz">8</button>
+        <button class="black-button buttonz">9</button>
+       <button class="orange-button buttonz">*</button>
     </p>
 
-    <p><button onclick="
-            input('0');
-        ">0</button>
-        <button onclick="
-            input('.');
-        ">.</button>
-        <button onclick="
+    <p><button class="black-button buttonz">0</button>
+        <button class="black-button buttonz">.</button>
+        <button class="black-button equals" onclick="
             if(!calculation) {
                 return;
             }
@@ -80,13 +53,11 @@
                 localStorage.setItem('lastRes', result);
             }
         ">=</button>
-       <button onclick="
-            input('/');
-        ">/</button>
+       <button class="orange-button buttonz">/</button>
     </p>
 
     <p>
-        <button onclick="
+        <button class="clear-button" onclick="
             operator = false;
 
             calculation = '';
@@ -102,7 +73,6 @@
         ">Clear</button>
     </p>
     
-
     <script src="calculator.js"></script>
 </body>
 </html>
