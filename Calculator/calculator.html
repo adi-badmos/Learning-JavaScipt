@@ -8,69 +8,37 @@
 </head>
 <body>
     <h1>Calculator</h1>
-    <p id="calc" class="display"></p>
-    <p id="result" class="display"></p>
-    <p><button class="black-button buttonz">1</button>
-        <button class="black-button buttonz">2</button>
-        <button class="black-button buttonz">3</button>
-       <button class="orange-button buttonz">+</button>
-    </p>
-
-    <p><button class="black-button buttonz">4</button>
-        <button class="black-button buttonz">5</button>
-        <button class="black-button buttonz">6</button>
-       <button class="orange-button buttonz">-</button>
-    </p>
-
-    <p><button class="black-button buttonz">7</button>
+    <p class="calc display"></p>
+    <p class="result display"></p>
+    <p>
+        <button class="black-button buttonz">7</button>
         <button class="black-button buttonz">8</button>
         <button class="black-button buttonz">9</button>
-       <button class="orange-button buttonz">*</button>
-    </p>
-
-    <p><button class="black-button buttonz">0</button>
-        <button class="black-button buttonz">.</button>
-        <button class="black-button equals" onclick="
-            if(!calculation) {
-                return;
-            }
-
-            operator = false;
-            try {
-                result = eval(calculation);
-                showCalc();
-            } catch(e) {
-                console.log(e);
-                result = 'Error';
-
-                showCalc(calculation);
-                calculation = '';
-            } showResult();
-            
-            console.log(result);
-            if(result !== 'Error') {
-                localStorage.setItem('lastCalc', calculation);
-                localStorage.setItem('lastRes', result);
-            }
-        ">=</button>
-       <button class="orange-button buttonz">/</button>
+        <button class="orange-button buttonz">+</button>
     </p>
 
     <p>
-        <button class="clear-button" onclick="
-            operator = false;
+        <button class="black-button buttonz">4</button>
+        <button class="black-button buttonz">5</button>
+        <button class="black-button buttonz">6</button>
+        <button class="orange-button buttonz">-</button>
+    </p>
 
-            calculation = '';
-            localStorage.removeItem('lastCalc');
+    <p>
+        <button class="black-button buttonz">1</button>
+        <button class="black-button buttonz">2</button>
+        <button class="black-button buttonz">3</button>
+        <button class="orange-button buttonz">*</button>
+    </p>
 
-            result = '';
-            localStorage.removeItem('lastRes');
+    <p> <button class="black-button buttonz">0</button>
+        <button class="black-button buttonz">.</button>
+        <button class="black-button equals">=</button>
+        <button class="orange-button buttonz">/</button>
+    </p>
 
-            showCalc();
-            showResult();
-
-            console.clear();
-        ">Clear</button>
+    <p>
+        <button class="black-button clear-button">Clear</button>
     </p>
     
     <script src="calculator.js"></script>
