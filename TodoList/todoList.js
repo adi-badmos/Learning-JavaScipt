@@ -3,6 +3,7 @@ const tasks = [];
 const addTaskButton = document.querySelector('.add-task');
 const inputElement = document.querySelector('.input-task');
 const divElement = document.querySelector('.all-tasks');
+const dateElement = document.querySelector('.date-input');
 
 renderTasks();
 
@@ -13,10 +14,11 @@ divElement.addEventListener('click', deleteTask);
 function renderTasks() {
     let todoListHTML = ``;
     for(let i = 0; i < tasks.length; i++) {
-        let task = tasks[i];
+        const task = tasks[i];
+        const { name, dueDate } = task;
         todoListHTML += `
         <p>
-            ${task}
+            ${name} ${dueDate}
             <button data-index="${i}" data-kaam="delete">Delete</button>
         </p>
     `;
@@ -28,11 +30,18 @@ function addTask() {
         return;
     }
 
-    console.log(event);
+    const today = new Date().toISOString().split('T')[0];
+    const name = inputElement.value;
+    const dueDate = dateElement.value || today;
 
     if(event.key === 'Enter' || event.type === 'click') {
-        tasks.push(inputElement.value);
+        tasks.push({
+            name,
+            dueDate
+        });
+
         inputElement.value = '';
+        dateElement.value = '';
         renderTasks();
     }
 }

@@ -3,13 +3,7 @@ body {
     color: white;
 }
 
-.input-task {
-    background-color: rgb(30, 30, 30);
-    color: white;
-    border-color: white;
-}
-
-.add-task {
+.common-class {
     background-color: rgb(30, 30, 30);
     color: white;
     border-color: white;
