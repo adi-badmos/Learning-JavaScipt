@@ -1,4 +1,4 @@
-const tasks = [];
+const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 const addTaskButton = document.querySelector('.add-task');
 const inputElement = document.querySelector('.input-task');
@@ -40,6 +40,8 @@ function addTask() {
             dueDate
         });
 
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+
         inputElement.value = '';
         dateElement.value = '';
         renderTasks();
@@ -51,6 +53,8 @@ function deleteTask() {
     if(targ.dataset.kaam === 'delete') {
         const idx = Number(targ.dataset.index);
         tasks.splice(idx, 1);
+
+        localStorage.setItem('tasks', JSON.stringify(tasks));
         renderTasks();
     }
 }
