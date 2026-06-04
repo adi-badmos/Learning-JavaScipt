@@ -40,7 +40,7 @@ function autoPlay() {
         autoPlayElement.innerText = 'Auto Play';
         isAutoPlaying = false;
     } else {
-        setInterval(() => {
+        intervalId = setInterval(() => {
             const playerMove = getRandom();
             playGame(playerMove);
         }, 1000);
