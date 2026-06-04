@@ -13,16 +13,18 @@ divElement.addEventListener('click', deleteTask);
 
 function renderTasks() {
     let todoListHTML = ``;
-    for(let i = 0; i < tasks.length; i++) {
-        const task = tasks[i];
+
+    tasks.forEach((task, idx) => {
         const { name, dueDate } = task;
         todoListHTML += `
         <p>
             ${name} ${dueDate}
-            <button data-index="${i}" data-kaam="delete">Delete</button>
+            <button data-index="${idx}" data-kaam="delete">Delete</button>
         </p>
-    `;
-    } divElement.innerHTML = todoListHTML;
+        `
+    });
+    
+    divElement.innerHTML = todoListHTML;
 }
 
 function addTask() {
