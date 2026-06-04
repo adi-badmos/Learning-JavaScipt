@@ -28,7 +28,8 @@ body {
     font-size: 25px;
 }
 
-.reset-button {
+.reset-button,
+.auto-play-button {
     background-color: white;
     border: none;
     font-size: 20px;

@@ -16,13 +16,39 @@ if(!score) {
 }
 */
 
-document.querySelector('.rock').addEventListener('click', () => playGame(0));
-document.querySelector('.paper').addEventListener('click', () => playGame(1));
-document.querySelector('.scissors').addEventListener('click', () => playGame(2));
+const rockButton = document.querySelector('.rock');
+const paperButton = document.querySelector('.paper');
+const scissorNutton = document.querySelector('.scissors');
+const resetButton = document.querySelector('.reset-button');
+const scoreElement = document.querySelector('.score');
+const autoPlayElement = document.querySelector('.auto-play-button');
 
-document.querySelector('.reset').addEventListener('click', resetScore);
+rockButton.addEventListener('click', () => playGame(0));
+paperButton.addEventListener('click', () => playGame(1));
+scissorNutton.addEventListener('click', () => playGame(2));
+resetButton.addEventListener('click', resetScore);
+autoPlayElement.addEventListener('click', autoPlay);
 
 updateMessage();
+
+let isAutoPlaying = false;
+let intervalId;
+
+function autoPlay() {
+    if(isAutoPlaying) {
+        clearInterval(intervalId);
+        autoPlayElement.innerText = 'Auto Play';
+        isAutoPlaying = false;
+    } else {
+        setInterval(() => {
+            const playerMove = getRandom();
+            playGame(playerMove);
+        }, 1000);
+
+        autoPlayElement.innerText = 'Stop Play';
+        isAutoPlaying = true;
+    }
+}
 
 function getRandom() {
     return Math.floor(Math.random() * 3);
@@ -88,7 +114,7 @@ function scoreUpdate(result) {
 }
 
 function updateMessage(message = '', result = '') {
-    document.querySelector('.score').innerText = `${message}\n${result}\n\nWins: ${score.wins}, Losses: ${score.losses}, Draws: ${score.draws}`;
+    scoreElement.innerText = `${message}\n${result}\n\nWins: ${score.wins}, Losses: ${score.losses}, Draws: ${score.draws}`;
 }
 
 function resetScore() {
