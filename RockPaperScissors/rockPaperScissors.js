@@ -22,6 +22,7 @@ const scissorNutton = document.querySelector('.scissors');
 const resetButton = document.querySelector('.reset-button');
 const scoreElement = document.querySelector('.score');
 const autoPlayElement = document.querySelector('.auto-play-button');
+const playButtons = document.querySelectorAll('.move-button');
 
 rockButton.addEventListener('click', () => playGame(0));
 paperButton.addEventListener('click', () => playGame(1));
@@ -39,6 +40,10 @@ function autoPlay() {
         clearInterval(intervalId);
         autoPlayElement.innerText = 'Auto Play';
         isAutoPlaying = false;
+        
+        playButtons.forEach(playButton => {
+            playButton.disabled = false;
+        });
     } else {
         intervalId = setInterval(() => {
             const playerMove = getRandom();
@@ -47,6 +52,10 @@ function autoPlay() {
 
         autoPlayElement.innerText = 'Stop Play';
         isAutoPlaying = true;
+
+        playButtons.forEach(playButton => {
+            playButton.disabled = true;
+        });
     }
 }
 

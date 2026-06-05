@@ -8,7 +8,7 @@
 <body>
     <h1>Cart</h1>
 
-    <button onclick="
+    <button class="add-to-cart" onclick="
         updateCartQuantity('add', 1);
     ">Add to Cart</button>
     
@@ -40,40 +40,6 @@
     <p class="alert"></p>
     <p class="display-cart-quantity">Cart Quantity: 0</p>
 
-    <script>
-        let cartQuantity = 0;
-
-        displayCart();
-
-        function displayCart(message = `<br>`) {
-            let alertElement = document.querySelector('.alert');
-
-            alertElement.innerHTML = message;
-
-            let dispCart = document.querySelector('.display-cart-quantity');
-
-            dispCart.innerText = `Cart Quantity: ${cartQuantity}`;
-        }
-
-        function updateCartQuantity(operation, quantity) {
-            let message = `<br>`;
-
-            if(operation === 'add') {
-                if(cartQuantity + quantity > 10) {
-                    message = 'The cart is full!';
-                } else {
-                    cartQuantity += quantity;
-                }
-            } else if(operation === 'subtract') {
-                if(cartQuantity < quantity) {
-                    message = 'Not enough items in the cart!';
-                } else {
-                    cartQuantity -= quantity;
-                }
-            } else {
-                message = 'Invalid operation!';
-            } displayCart(message);
-        }
-    </script>
+    <script src="cart.js"></script>
 </body>
 </html>
