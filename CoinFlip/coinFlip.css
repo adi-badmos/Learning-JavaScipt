@@ -1,0 +1,32 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial;
+}
+
+.buttonz {
+    height: 200px;
+    width: 200px;
+    background-color: black;
+    color: white;
+    font-size: 40px;
+
+    border-color: white;
+    border-radius: 50%;
+    border-width: 5px;
+    
+    padding: 35px;
+    cursor: pointer;
+}
+
+.clear-button {
+    background-color: white;
+    border: none;
+    font-size: 20px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.result {
+    font-size: 25px;
+}
