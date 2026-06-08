@@ -7,22 +7,35 @@
     <link rel="stylesheet" href="rockPaperScissors.css">
 </head>
 <body>
-    <h1>Rock Paper Scissors</h1>
+    <div class="game">
+        <h1>Rock Paper Scissors</h1>
     
-    <br>
-    <p>
-        <button class="move-button rock">✊🏻</button>
-        <button class="move-button paper">🖐🏻</button>
-        <button class="move-button scissors">✌🏻</button>
-    </p>
+        <br>
+        <p>
+            <button class="move-button rock">✊🏻</button>
+            <button class="move-button paper">🖐🏻</button>
+            <button class="move-button scissors">✌🏻</button>
+        </p>
 
-    <br>
-    <p class="score"></p>
+        <br>
+        <p class="score"></p>
 
-    <br>
-    <button class="reset-button">Reset Score</button>
-    <button class="auto-play-button">Auto Play</button>
+        <br>
+        <button class="reset-button">Reset Score</button>
+        <button class="auto-play-button">Auto Play</button>
+    </div>
     
+    <div class="pop-up hidden">
+        <div class="overlay"></div>
+
+        <div class="confirm-box">
+            <p>Are you sure you want to reset the score?</p>
+
+            <button class="yes-button">Yes</button>
+            <button class="no-button">No</button>
+        </div>
+    </div>
+
     <script src="rockPaperScissors.js"></script>
 </body>
 </html>

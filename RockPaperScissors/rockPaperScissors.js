@@ -18,17 +18,55 @@ if(!score) {
 
 const rockButton = document.querySelector('.rock');
 const paperButton = document.querySelector('.paper');
-const scissorNutton = document.querySelector('.scissors');
+const scissorButton = document.querySelector('.scissors');
 const resetButton = document.querySelector('.reset-button');
 const scoreElement = document.querySelector('.score');
 const autoPlayElement = document.querySelector('.auto-play-button');
 const playButtons = document.querySelectorAll('.move-button');
+const popUp = document.querySelector('.pop-up');
+const yesButton = document.querySelector('.yes-button');
+const noButton = document.querySelector('.no-button');
 
 rockButton.addEventListener('click', () => playGame(0));
 paperButton.addEventListener('click', () => playGame(1));
-scissorNutton.addEventListener('click', () => playGame(2));
-resetButton.addEventListener('click', resetScore);
+scissorButton.addEventListener('click', () => playGame(2));
 autoPlayElement.addEventListener('click', autoPlay);
+resetButton.addEventListener('click', resetTrigger);
+
+document.addEventListener('keydown', (event) => {
+    if(isPopUpOpen()) {
+        return;
+    }
+
+    if(event.key === 'r') { playGame(0); }
+    else if(event.key === 'p') { playGame(1); }
+    else if(event.key === 's') { playGame(2); }
+    else if(event.key === ' ') { autoPlay(); }
+    else if(event.key === 'Backspace') { resetTrigger(); }
+});
+
+yesButton.addEventListener('click', () => {
+    resetScore();
+    hideAgain();
+});
+noButton.addEventListener('click', hideAgain);
+
+document.addEventListener('keydown', (event) => {
+    if(!isPopUpOpen()) {
+        return;
+    }
+
+    if(event.key === 'y') {
+        resetScore();
+        hideAgain();
+    } else if(event.key === 'n' || event.key === 'Escape') {
+        hideAgain();
+    }
+});
+
+function isPopUpOpen() {
+    return !popUp.classList.contains('hidden');
+}
 
 updateMessage();
 
@@ -41,6 +79,7 @@ function autoPlay() {
         autoPlayElement.innerText = 'Auto Play';
         isAutoPlaying = false;
         
+        resetButton.disabled = false;
         playButtons.forEach(playButton => {
             playButton.disabled = false;
         });
@@ -48,11 +87,12 @@ function autoPlay() {
         intervalId = setInterval(() => {
             const playerMove = getRandom();
             playGame(playerMove);
-        }, 1000);
+        }, 1);
 
         autoPlayElement.innerText = 'Stop Play';
         isAutoPlaying = true;
 
+        resetButton.disabled = true;
         playButtons.forEach(playButton => {
             playButton.disabled = true;
         });
@@ -124,6 +164,14 @@ function scoreUpdate(result) {
 
 function updateMessage(message = '', result = '') {
     scoreElement.innerText = `${message}\n${result}\n\nWins: ${score.wins}, Losses: ${score.losses}, Draws: ${score.draws}`;
+}
+
+function resetTrigger() {
+    popUp.classList.remove('hidden');
+}
+
+function hideAgain() {
+    popUp.classList.add('hidden');
 }
 
 function resetScore() {

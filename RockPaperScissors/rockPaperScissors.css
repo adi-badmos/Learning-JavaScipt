@@ -14,6 +14,8 @@ body {
     border-width: 5px;
     
     padding: 35px;
+
+    cursor: pointer;
 }
 
 .paper {
@@ -29,9 +31,54 @@ body {
 }
 
 .reset-button,
-.auto-play-button {
+.auto-play-button,
+.yes-button,
+.no-button {
     background-color: white;
     border: none;
     font-size: 20px;
     padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.overlay {
+    position: fixed;
+    
+    top: 0;
+    left: 0;
+    
+    height: 100%;
+    width: 100%;
+
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 99;
+}
+
+.confirm-box {
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background-color: rgb(35, 35, 35);
+    color: white;
+    font-family: Arial;
+
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 100;
+}
+
+.confirm-box button {
+    margin: 10px;
+    padding: 8px 15px;
+    font-size: 16px;
+}
+
+.hidden {
+    display: none;
 }
