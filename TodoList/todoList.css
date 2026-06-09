@@ -1,10 +1,37 @@
-body {
-    background-color: rgb(30, 30, 30);
-    color: white;
+.input-task {
+    font-size: 15px;
+    padding: 6px;
 }
 
-.common-class {
-    background-color: rgb(30, 30, 30);
+.add-task,
+.delete-task {
     color: white;
-    border-color: white;
+    border: none;
+    font-size: 15px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.add-task {
+    background-color: green;
+}
+
+.delete-task {
+    background-color: darkred;
+}
+
+.todo-input-grid {
+    display: grid;
+    grid-template-columns: 200px 100px;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.task-row {
+    display: grid;
+    grid-template-columns: 200px 100px;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
 }

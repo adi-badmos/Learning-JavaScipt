@@ -3,7 +3,6 @@ const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 const addTaskButton = document.querySelector('.add-task');
 const inputElement = document.querySelector('.input-task');
 const divElement = document.querySelector('.all-tasks');
-const dateElement = document.querySelector('.date-input');
 
 renderTasks();
 
@@ -15,13 +14,14 @@ function renderTasks() {
     let todoListHTML = ``;
 
     tasks.forEach((task, idx) => {
-        const { name, dueDate } = task;
         todoListHTML += `
-        <p>
-            ${name} ${dueDate}
-            <button data-index="${idx}" data-kaam="delete">Delete</button>
-        </p>
-        `
+            <div class="task-row">
+                <div>${task}</div>
+                <button class="delete-task">
+                    Delete
+                </button>
+            </div>
+        `;
     });
     
     divElement.innerHTML = todoListHTML;
@@ -32,31 +32,24 @@ function addTask() {
         return;
     }
 
-    const today = new Date().toISOString().split('T')[0];
     const name = inputElement.value;
-    const dueDate = dateElement.value || today;
-
     if(event.key === 'Enter' || event.type === 'click') {
-        tasks.push({
-            name,
-            dueDate
-        });
+        tasks.push(name);
 
         localStorage.setItem('tasks', JSON.stringify(tasks));
 
         inputElement.value = '';
-        dateElement.value = '';
         renderTasks();
     }
 }
 
 function deleteTask() {
-    const targ = event.target;
-    if(targ.dataset.kaam === 'delete') {
-        const idx = Number(targ.dataset.index);
-        tasks.splice(idx, 1);
-
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-        renderTasks();
-    }
+    const deleteButtons = document.querySelectorAll('.delete-task');
+    deleteButtons.forEach((deleteButton, index) => {
+        deleteButton.addEventListener('click', () => {
+            tasks.splice(index, 1);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            renderTasks();
+        });
+    });
 }
