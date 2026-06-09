@@ -57,7 +57,7 @@ products.forEach((product) => {
 const productsGrid = document.querySelector('.js-products-grid');
 productsGrid.innerHTML += productsHTML;
 
-let intervalId;
+const timeoutIds = {};
 document.querySelectorAll('.js-add-to-cart')
     .forEach((button) => {
         button.addEventListener('click', () => {
@@ -66,11 +66,11 @@ document.querySelectorAll('.js-add-to-cart')
             const quantity = Number(selectElement.value);
 
             const addedText = document.querySelector(`.js-added-${productId}`);
-            addedText.classList.add('oppai');
+            addedText.classList.add('opacity-added');
 
-            clearInterval(intervalId);
-            intervalId = setTimeout(() => {
-                addedText.classList.remove('oppai');
+            clearTimeout(timeoutIds[productId]);
+            timeoutIds[productId] = setTimeout(() => {
+                addedText.classList.remove('opacity-added');
             }, 2000);
             
             addToCart(productId, quantity);
