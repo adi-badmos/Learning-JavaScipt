@@ -43,6 +43,27 @@ export function updateCartQuantity() {
 
 export function removeFromCart(productId) {
     cart = cart.filter(cartItem => cartItem.productId !== productId);
+    const container = document.querySelector(`.js-cart-item-container-${productId}`);
+        container.remove();
     updateCartQuantity();
+    saveToStorage();
+}
+
+export function updateQuantity(productId, newQuantity) {
+    let matchingItem;
+    cart.forEach((cartItem) => {
+        if(productId === cartItem.productId) {
+            matchingItem = cartItem;
+        }
+    });
+
+    if(newQuantity === 0) {
+        removeFromCart(productId);
+    }
+
+    if(matchingItem) {
+        matchingItem.quantity = newQuantity;
+    }
+
     saveToStorage();
 }
