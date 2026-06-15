@@ -2,6 +2,7 @@ import { cart, removeFromCart, updateCartQuantity, updateQuantity, updateDeliver
 import { products, getProduct } from '../../data/products.js';
 import formatCurrency from '../utils/money.js';
 import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
+import { renderPaymentSummary } from './paymentSummary.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 
 export function renderOrderSummary() {
@@ -125,6 +126,7 @@ export function renderOrderSummary() {
         updateQuantity(productId, Number(newInput));
         updateCartQuantity();
         renderOrderSummary();
+        renderPaymentSummary();
     }
 
     document.querySelectorAll('.save-quantity-link')
@@ -153,6 +155,7 @@ export function renderOrderSummary() {
             deleteLink.addEventListener('click', () => {
                 const { productId } = deleteLink.dataset;
                 removeFromCart(productId);
+                renderPaymentSummary();
             });
         });
 
@@ -165,6 +168,7 @@ export function renderOrderSummary() {
                 updateDeliveryOption(productId, deliveryOptionId);
 
                 renderOrderSummary();
+                renderPaymentSummary();
             });
         });
 }
