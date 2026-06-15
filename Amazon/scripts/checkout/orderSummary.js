@@ -16,10 +16,7 @@ export function renderOrderSummary() {
         const deliveryOption = getDeliveryOption(deliveryOptionId);
 
         const today = dayjs();
-        const deliveryDate = today.add(
-            deliveryOption.deliveryDays,
-            'days'
-        ).format('dddd, MMMM D');
+        const deliveryDate = today.add(deliveryOption.deliveryDays, 'days').format('dddd, MMMM D');
 
         cartSummaryHTML += `
             <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
@@ -135,6 +132,7 @@ export function renderOrderSummary() {
                 const { productId } = saveLink.dataset;
 
                 saveQuantity(productId);
+                updateCartQuantity();
             });
         });
 
@@ -145,6 +143,7 @@ export function renderOrderSummary() {
                     const { productId } = saveInput.dataset;
 
                     saveQuantity(productId);
+                    updateCartQuantity();
                 }
             });
         });
@@ -156,6 +155,7 @@ export function renderOrderSummary() {
                 const { productId } = deleteLink.dataset;
                 removeFromCart(productId);
                 renderPaymentSummary();
+                updateCartQuantity();
             });
         });
 

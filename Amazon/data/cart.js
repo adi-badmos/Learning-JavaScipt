@@ -36,9 +36,13 @@ export function updateCartQuantity() {
         cartQuantityAmazonElement.innerHTML = cartQuantity;
     }
 
+    const itemQuantityCheckoutElement = document.querySelector('.item-quantity-checkout');
     const cartQuantityCheckoutElement = document.querySelector('.cart-quantity-checkout');
     if(cartQuantityCheckoutElement) {
         cartQuantityCheckoutElement.innerHTML = `${cartQuantity} items`;
+    }
+    if(itemQuantityCheckoutElement) {
+        itemQuantityCheckoutElement.innerHTML = `Items (${cartQuantity}):`;
     }
 }
 
@@ -46,7 +50,6 @@ export function removeFromCart(productId) {
     cart = cart.filter(cartItem => cartItem.productId !== productId);
     const container = document.querySelector(`.js-cart-item-container-${productId}`);
     container.remove();
-    updateCartQuantity();
     saveToStorage();
 }
 
