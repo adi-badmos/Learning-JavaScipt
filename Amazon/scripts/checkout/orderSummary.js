@@ -171,6 +171,7 @@ export function renderOrderSummary() {
 
                 renderOrderSummary();
                 renderPaymentSummary();
+                updateCartQuantity();
             });
         });
 }
