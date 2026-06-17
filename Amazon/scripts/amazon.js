@@ -1,4 +1,4 @@
-import { cart, addToCart, updateCartQuantity } from '../data/cart.js';
+import { cart } from '../data/cart-class.js';
 import { products } from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 
@@ -75,9 +75,9 @@ document.querySelectorAll('.js-add-to-cart')
                 addedText.classList.remove('opacity-added');
             }, 2000);
             
-            addToCart(productId, quantity);
-            updateCartQuantity();
+            cart.addToCart(productId, quantity);
+            cart.updateCartQuantity();
         });
     });
 
-updateCartQuantity();
+cart.updateCartQuantity();

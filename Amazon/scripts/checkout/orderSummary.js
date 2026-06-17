@@ -1,4 +1,4 @@
-import { cart, removeFromCart, updateCartQuantity, updateQuantity, updateDeliveryOption } from '../../data/cart.js';
+import { cart } from '../../data/cart-class.js';
 import { products, getProduct } from '../../data/products.js';
 import { formatCurrency } from '../utils/money.js';
 import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
@@ -9,7 +9,7 @@ export function renderOrderSummary() {
     let cartSummaryHTML = ``;
 
     // Generating HTML
-    cart.forEach((cartItem) => {
+    cart.cartItems.forEach((cartItem) => {
         const productId = cartItem.productId;
         const matchingProduct = getProduct(productId);
         const deliveryOptionId = cartItem.deliveryOptionId;
@@ -120,8 +120,8 @@ export function renderOrderSummary() {
             return;
         }
         
-        updateQuantity(productId, Number(newInput));
-        updateCartQuantity();
+        cart.updateQuantity(productId, Number(newInput));
+        cart.updateCartQuantity();
         renderOrderSummary();
         renderPaymentSummary();
     }
@@ -132,7 +132,7 @@ export function renderOrderSummary() {
                 const { productId } = saveLink.dataset;
 
                 saveQuantity(productId);
-                updateCartQuantity();
+                cart.updateCartQuantity();
             });
         });
 
@@ -143,7 +143,7 @@ export function renderOrderSummary() {
                     const { productId } = saveInput.dataset;
 
                     saveQuantity(productId);
-                    updateCartQuantity();
+                    cart.updateCartQuantity();
                 }
             });
         });
@@ -153,25 +153,25 @@ export function renderOrderSummary() {
         .forEach((deleteLink) => {
             deleteLink.addEventListener('click', () => {
                 const { productId } = deleteLink.dataset;
-                removeFromCart(productId);
+                cart.removeFromCart(productId);
 
                 renderOrderSummary();
                 renderPaymentSummary();
-                updateCartQuantity();
+                cart.updateCartQuantity();
             });
         });
 
-    updateCartQuantity();
+    cart.updateCartQuantity();
 
     document.querySelectorAll('.js-delivery-option')
         .forEach((element) => {
             element.addEventListener('click', () => {
                 const { productId, deliveryOptionId } = element.dataset;
-                updateDeliveryOption(productId, deliveryOptionId);
+                cart.updateDeliveryOption(productId, deliveryOptionId);
 
                 renderOrderSummary();
                 renderPaymentSummary();
-                updateCartQuantity();
+                cart.updateCartQuantity();
             });
         });
 }
