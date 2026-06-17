@@ -48,8 +48,7 @@ export function updateCartQuantity() {
 
 export function removeFromCart(productId) {
     cart = cart.filter(cartItem => cartItem.productId !== productId);
-    const container = document.querySelector(`.js-cart-item-container-${productId}`);
-    container.remove();
+    
     saveToStorage();
 }
 

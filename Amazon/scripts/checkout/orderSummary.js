@@ -154,6 +154,8 @@ export function renderOrderSummary() {
             deleteLink.addEventListener('click', () => {
                 const { productId } = deleteLink.dataset;
                 removeFromCart(productId);
+
+                renderOrderSummary();
                 renderPaymentSummary();
                 updateCartQuantity();
             });
