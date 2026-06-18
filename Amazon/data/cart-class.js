@@ -109,7 +109,19 @@ class Cart {
 export const cart = new Cart('cart-oop');
 const businessCart = new Cart('cart-business');
 
-export function loadCart(func) {
+export function loadCartFetch() {
+    const promise = fetch(
+        'https://supersimplebackend.dev/cart'
+    ).then((response) => {
+        return response.text();
+    }).then((response) => {
+        console.log(response);
+    });
+
+    return promise;
+}
+
+function loadCart(func) {
   const xhr = new XMLHttpRequest();
 
   xhr.addEventListener('load', () => {
