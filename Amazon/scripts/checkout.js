@@ -3,19 +3,36 @@ import { loadProducts, loadProductsFetch } from "../data/products.js";
 import { renderOrderSummary } from "./checkout/orderSummary.js";
 import { renderPaymentSummary } from "./checkout/paymentSummary.js";
 
-Promise.all([
-    loadProductsFetch(),
-    new Promise((resolve) => {
+async function loadPage() {
+    console.log('load page');
+
+    await loadProductsFetch();
+    await new Promise((resolve) => {
         loadCart(() => {
             resolve();
         });
-    })
+    });
 
-]).then(() => {
     renderOrderSummary();
     renderPaymentSummary();
     cart.updateCartQuantity();
-});
+}
+
+loadPage();
+
+// Promise.all([
+//     loadProductsFetch(),
+//     new Promise((resolve) => {
+//         loadCart(() => {
+//             resolve();
+//         });
+//     })
+
+// ]).then(() => {
+//     renderOrderSummary();
+//     renderPaymentSummary();
+//     cart.updateCartQuantity();
+// });
 
 // new Promise((resolve) => {
 //     loadProducts(() => {
