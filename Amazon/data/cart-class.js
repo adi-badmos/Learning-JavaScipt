@@ -108,3 +108,15 @@ class Cart {
 // Using constructor
 export const cart = new Cart('cart-oop');
 const businessCart = new Cart('cart-business');
+
+export function loadCart(func) {
+  const xhr = new XMLHttpRequest();
+
+  xhr.addEventListener('load', () => {
+    console.log(xhr.response);
+    func();
+  });
+
+  xhr.open('GET', 'https://supersimplebackend.dev/cart');
+  xhr.send();
+}

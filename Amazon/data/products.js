@@ -80,7 +80,7 @@ class Appliance extends Product {
 
 export let products = [];
 
-export function loadProducts(renderProducts) {
+export function loadProducts(func) {
   const xhr = new XMLHttpRequest();
 
   xhr.addEventListener('load', () => {
@@ -93,7 +93,8 @@ export function loadProducts(renderProducts) {
       return new Product(productDetails);
     });
 
-    renderProducts();
+    func();
+    console.log('load products');
   });
   xhr.open('GET', 'https://supersimplebackend.dev/products');
   xhr.send();
