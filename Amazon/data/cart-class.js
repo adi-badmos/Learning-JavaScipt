@@ -38,7 +38,11 @@ class Cart {
 
     removeFromCart(productId) {
         this.cartItems = this.cartItems.filter(cartItem => cartItem.productId !== productId);
-        
+        this.saveToStorage();
+    }
+
+    clearCart() {
+        this.cartItems = [];
         this.saveToStorage();
     }
 

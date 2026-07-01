@@ -3,6 +3,7 @@ import { products, loadProducts } from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 
 loadProducts(renderProducts);
+cart.updateCartQuantity();
 
 function renderProducts () {
     let productsHTML = '';
