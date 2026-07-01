@@ -1,3 +1,4 @@
+import { cart } from '../data/cart-class.js';
 import { getProduct, loadProductsFetch } from '../data/products.js';
 import { orders } from '../data/orders.js';
 import { formatCurrency } from './utils/money.js';
@@ -19,19 +20,19 @@ function productsListHTML(order) {
                     ${product.name}
                 </div>
                 <div class="product-delivery-date">
-                    Arriving on: ${dayjs(product.estiatedDeliveryTime).format('MMMM D')}
+                    Arriving on: ${dayjs(productDetails.estimatedDeliveryTime).format('MMMM D')}
                 </div>
                 <div class="product-quantity">
-                    Quantity: ${product.quantity}
+                    Quantity: ${productDetails.quantity}
                 </div>
-                <button class="buy-again-button button-primary">
+                <button class="buy-again-button button-primary" data-product-id="${product.id}">
                     <img class="buy-again-icon" src="images/icons/buy-again.png">
                     <span class="buy-again-message">Buy it again</span>
                 </button>
             </div>
 
             <div class="product-actions">
-                <a href="tracking.html">
+                <a href="tracking.html?orderId=${order.id}&productId=${productDetails.productId}">
                     <button class="track-package-button button-secondary">
                     Track package
                     </button>
@@ -77,6 +78,17 @@ async function renderOrders() {
     });
 
     document.querySelector('.js-orders-grid').innerHTML = ordersHTML;
+
+    document.querySelectorAll('.buy-again-button')
+        .forEach((button) => {
+            button.addEventListener('click', () => {
+                const { productId } = button.dataset;
+                
+                cart.addToCart(productId, 1);
+                cart.updateCartQuantity();
+            });
+        });
 }
 
 renderOrders();
+cart.updateCartQuantity();

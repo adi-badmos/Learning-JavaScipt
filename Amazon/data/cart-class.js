@@ -57,11 +57,12 @@ class Cart {
             cartQuantityAmazonElement.innerHTML = cartQuantity;
         }
 
-        const itemQuantityCheckoutElement = document.querySelector('.item-quantity-checkout');
         const cartQuantityCheckoutElement = document.querySelector('.cart-quantity-checkout');
         if(cartQuantityCheckoutElement) {
             cartQuantityCheckoutElement.innerHTML = `${cartQuantity} items`;
         }
+
+        const itemQuantityCheckoutElement = document.querySelector('.item-quantity-checkout');
         if(itemQuantityCheckoutElement) {
             itemQuantityCheckoutElement.innerHTML = `Items (${cartQuantity}):`;
         }
